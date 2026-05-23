@@ -232,6 +232,7 @@ img {
   border: 1px solid var(--glass-border);
   border-radius: var(--border-radius-pill);
   cursor: pointer;
+  line-height: 1;
   transition: all 0.3s ease;
 }
 
@@ -239,6 +240,36 @@ img {
   color: var(--accent-gold);
   border-color: var(--glass-border-hover);
   background: rgba(201, 160, 80, 0.06);
+}
+
+.flag-icon {
+  display: inline-block;
+  width: 18px;
+  height: 12px;
+  flex: 0 0 18px;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(240, 236, 228, 0.16);
+}
+
+.flag-fr {
+  background: linear-gradient(
+    90deg,
+    #0055a4 0 33.333%,
+    #ffffff 33.333% 66.666%,
+    #ef4135 66.666% 100%
+  );
+}
+
+.flag-en {
+  background:
+    linear-gradient(26deg, transparent 44%, #ffffff 44% 50%, #cf142b 50% 56%, #ffffff 56% 62%, transparent 62%),
+    linear-gradient(-26deg, transparent 44%, #ffffff 44% 50%, #cf142b 50% 56%, #ffffff 56% 62%, transparent 62%),
+    linear-gradient(90deg, transparent 42%, #ffffff 42% 58%, transparent 58%),
+    linear-gradient(0deg, transparent 35%, #ffffff 35% 65%, transparent 65%),
+    linear-gradient(90deg, transparent 46%, #cf142b 46% 54%, transparent 54%),
+    linear-gradient(0deg, transparent 42%, #cf142b 42% 58%, transparent 58%),
+    #00247d;
 }
 
 .nav-right-mobile {
@@ -1364,6 +1395,10 @@ img {
 
   .nav-toggle {
     display: flex;
+  }
+
+  .nav-right {
+    display: none;
   }
 
   .nav-links {

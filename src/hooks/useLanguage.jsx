@@ -1,16 +1,25 @@
-import { createContext, useContext, useState, useCallback, useMemo } from 'react';
+import { createContext, useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { translations } from '../i18n/translations';
 
 const LanguageContext = createContext(null);
 
 export function LanguageProvider({ children }) {
-  const [currentLang, setCurrentLang] = useState(() => {
+  const [currentLang, setCurrentLang] = useState('en');
+
+  useEffect(() => {
     try {
-      return localStorage.getItem('lang') || 'en';
+      const savedLang = localStorage.getItem('lang');
+      if (savedLang === 'en' || savedLang === 'fr') {
+        setCurrentLang(savedLang);
+      }
     } catch {
-      return 'en';
+      /* noop */
     }
-  });
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.lang = currentLang;
+  }, [currentLang]);
 
   const t = useCallback(
     (key) => {

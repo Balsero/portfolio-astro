@@ -32,6 +32,9 @@ function Navbar() {
     { href: '#contact', label: t('nav.contact') },
   ];
 
+  const nextLang = currentLang === 'en' ? 'fr' : 'en';
+  const nextLangLabel = nextLang.toUpperCase();
+
   return (
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="container">
@@ -52,14 +55,26 @@ function Navbar() {
         </ul>
 
         <div className="nav-right">
-          <button className="lang-toggle" onClick={toggleLang}>
-            {currentLang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}
+          <button
+            className="lang-toggle"
+            onClick={toggleLang}
+            type="button"
+            aria-label={`Switch language to ${nextLangLabel}`}
+          >
+            <span className={`flag-icon flag-${nextLang}`} aria-hidden="true"></span>
+            <span>{nextLangLabel}</span>
           </button>
         </div>
 
         <div className="nav-right-mobile">
-          <button className="lang-toggle" onClick={toggleLang}>
-            {currentLang === 'en' ? '🇫🇷 FR' : '🇬🇧 EN'}
+          <button
+            className="lang-toggle"
+            onClick={toggleLang}
+            type="button"
+            aria-label={`Switch language to ${nextLangLabel}`}
+          >
+            <span className={`flag-icon flag-${nextLang}`} aria-hidden="true"></span>
+            <span>{nextLangLabel}</span>
           </button>
           <button
             className={`nav-toggle${menuOpen ? ' active' : ''}`}

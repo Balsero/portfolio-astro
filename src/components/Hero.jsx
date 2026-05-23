@@ -5,6 +5,33 @@ import { FcMusic, FcFlashOn } from 'react-icons/fc';
 import { SiAngular } from 'react-icons/si';
 import { FaGamepad, FaLaptopCode, FaGraduationCap, FaTv, FaSkull } from 'react-icons/fa';
 
+const particleColors = [
+  'rgba(201, 160, 80, 0.6)',
+  'rgba(232, 213, 181, 0.4)',
+  'rgba(245, 158, 11, 0.4)',
+];
+
+const seededRandom = (seed) => {
+  const value = Math.sin(seed) * 10000;
+  return value - Math.floor(value);
+};
+
+const rounded = (value) => Number(value.toFixed(4));
+
+const particles = Array.from({ length: 30 }, (_, i) => {
+  const seed = i + 1;
+
+  return {
+    id: i,
+    left: `${rounded(seededRandom(seed * 11) * 100)}%`,
+    top: `${rounded(seededRandom(seed * 17) * 100)}%`,
+    size: `${rounded(seededRandom(seed * 23) * 4 + 2)}px`,
+    color: particleColors[Math.floor(seededRandom(seed * 29) * particleColors.length)],
+    duration: `${rounded(seededRandom(seed * 31) * 10 + 10)}s`,
+    delay: `${rounded(seededRandom(seed * 37) * 10)}s`,
+  };
+});
+
 function Hero() {
   const { t, currentLang } = useLanguage();
   const [displayText, setDisplayText] = useState('');
@@ -55,24 +82,6 @@ function Hero() {
       if (timeoutRef.current) clearTimeout(timeoutRef.current);
     };
   }, [displayText, isDeleting, phraseIndex, currentLang]);
-
-  // Generate particles
-  const particles = Array.from({ length: 30 }, (_, i) => {
-    const colors = [
-      'rgba(201,160,80,0.6)',
-      'rgba(232,213,181,0.4)',
-      'rgba(245,158,11,0.4)',
-    ];
-    return {
-      id: i,
-      left: `${Math.random() * 100}%`,
-      top: `${Math.random() * 100}%`,
-      size: `${Math.random() * 4 + 2}px`,
-      color: colors[Math.floor(Math.random() * colors.length)],
-      duration: `${Math.random() * 10 + 10}s`,
-      delay: `${Math.random() * 10}s`,
-    };
-  });
 
   const getPhraseIcon = (index) => {
     switch (index % 6) {
