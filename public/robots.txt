@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /audio/
 
-Sitemap: https://portfolio-astro-two-indol.vercel.app/sitemap.xml
+Sitemap: https://jonathanr-portfolio.vercel.app/sitemap.xml

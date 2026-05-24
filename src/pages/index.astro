@@ -2,7 +2,7 @@
 import App from '../App.jsx';
 import '../styles/global.css';
 
-const siteUrl = 'https://portfolio-astro-two-indol.vercel.app';
+const siteUrl = 'https://jonathanr-portfolio.vercel.app';
 const canonicalUrl = `${siteUrl}/`;
 const title = 'Jonathan Rodriguez Tames | Software Developer Portfolio';
 const siteName = 'Jonathan Rodriguez Tames Portfolio';
@@ -205,6 +205,8 @@ const jsonLd = {
     <meta property="og:updated_time" content={lastUpdated} />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:domain" content="jonathanr-portfolio.vercel.app" />
+    <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImageUrl} />
