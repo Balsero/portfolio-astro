@@ -5,9 +5,15 @@ import '../styles/global.css';
 const siteUrl = 'https://portfolio-astro-two-indol.vercel.app';
 const canonicalUrl = `${siteUrl}/`;
 const title = 'Jonathan Rodriguez Tames | Software Developer Portfolio';
+const siteName = 'Jonathan Rodriguez Tames Portfolio';
 const description =
-  'Portfolio of Jonathan Rodriguez Tames, a software engineering student and developer in Montreal focused on web apps, game development, software testing, and music tools.';
-const imageUrl = `${siteUrl}/assets/captain-bug-logo.png`;
+  'Software developer portfolio of Jonathan Rodriguez Tames in Montreal: web applications, game development, software testing, Angular, React, Astro, Unity, and music tools.';
+const profileImageUrl = `${siteUrl}/photo.jpg`;
+const logoImageUrl = `${siteUrl}/assets/captain-bug-logo.png`;
+const socialImageUrl = `${siteUrl}/assets/og-image.png`;
+const socialImageAlt =
+  'Spy-inspired black and gold portfolio preview for Jonathan Rodriguez Tames';
+const lastUpdated = '2026-05-24';
 const keywords = [
   'Jonathan Rodriguez Tames',
   'software developer portfolio',
@@ -22,6 +28,36 @@ const keywords = [
   'Repertory Planner',
   'Anime Best Quotes',
 ].join(', ');
+const featuredProjects = [
+  {
+    name: 'Repertory Planner',
+    description:
+      'SaaS platform for music team coordination, rehearsal planning, repertoire management, and Spotify synchronization.',
+    url: 'https://github.com/Balsero/Repertory-Planner',
+    keywords: ['Angular', 'TypeScript', 'NestJS', 'MongoDB', 'Spotify API'],
+  },
+  {
+    name: 'Anime Best Quotes',
+    description:
+      'Community-driven React application for browsing, voting, and sharing anime quotes with real-time ranking.',
+    url: 'https://animebestquotes.netlify.app',
+    keywords: ['React', 'JavaScript', 'Supabase', 'PostgreSQL'],
+  },
+  {
+    name: "Spectral Crusade: Joan's Legacy",
+    description:
+      'Souls-like metroidvania game created during a game jam with Unity and C#.',
+    url: 'https://balseros-art-studio.itch.io/spectral-crusade-joans-legacy',
+    keywords: ['Unity', 'C#', 'Game Jam', 'Metroidvania'],
+  },
+  {
+    name: 'Resistance of the Forgotten Kingdom',
+    description:
+      'Roguelike game jam adventure with procedural levels, permadeath, and fast-paced action.',
+    url: 'https://christian-j-pereda-rives.itch.io/resistance-of-the-forgotten-kingdom',
+    keywords: ['Unity', 'C#', 'Game Jam', 'Roguelike'],
+  },
+];
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -30,7 +66,7 @@ const jsonLd = {
       '@id': `${canonicalUrl}#person`,
       name: 'Jonathan Rodriguez Tames',
       url: canonicalUrl,
-      image: imageUrl,
+      image: profileImageUrl,
       jobTitle: 'Software Developer',
       email: 'mailto:jonathan.rodrigueztames@gmail.com',
       address: {
@@ -60,6 +96,7 @@ const jsonLd = {
         'Unity',
         'Software Testing',
       ],
+      knowsLanguage: ['Spanish', 'French', 'English'],
       sameAs: [
         'https://github.com/Balsero',
         'https://www.linkedin.com/in/jonasrodriguezt',
@@ -69,10 +106,13 @@ const jsonLd = {
       '@type': 'WebSite',
       '@id': `${canonicalUrl}#website`,
       url: canonicalUrl,
-      name: 'Jonathan Rodriguez Tames Portfolio',
+      name: siteName,
       description,
       inLanguage: ['en', 'fr'],
       publisher: {
+        '@id': `${canonicalUrl}#person`,
+      },
+      creator: {
         '@id': `${canonicalUrl}#person`,
       },
     },
@@ -90,51 +130,85 @@ const jsonLd = {
       },
       primaryImageOfPage: {
         '@type': 'ImageObject',
-        url: imageUrl,
-        width: 1254,
-        height: 1254,
+        url: socialImageUrl,
+        width: 1200,
+        height: 630,
       },
       inLanguage: ['en', 'fr'],
+      dateModified: lastUpdated,
+      datePublished: lastUpdated,
+      mainEntity: {
+        '@id': `${canonicalUrl}#person`,
+      },
+      hasPart: featuredProjects.map((project) => ({
+        '@id': `${canonicalUrl}#${project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      })),
     },
+    ...featuredProjects.map((project) => ({
+      '@type': 'CreativeWork',
+      '@id': `${canonicalUrl}#${project.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+      name: project.name,
+      description: project.description,
+      url: project.url,
+      creator: {
+        '@id': `${canonicalUrl}#person`,
+      },
+      keywords: project.keywords.join(', '),
+      isPartOf: {
+        '@id': `${canonicalUrl}#webpage`,
+      },
+    })),
   ],
 };
 ---
 
-<html lang="en">
+<html lang="en-CA">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="author" content="Jonathan Rodriguez Tames" />
+    <meta name="creator" content="Jonathan Rodriguez Tames" />
+    <meta name="publisher" content="Jonathan Rodriguez Tames" />
     <meta name="keywords" content={keywords} />
     <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
     <meta name="theme-color" content="#0a0a0a" />
     <meta name="color-scheme" content="dark" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="application-name" content={siteName} />
+    <meta name="category" content="Software Development Portfolio" />
     <meta http-equiv="content-language" content="en, fr" />
     <link rel="canonical" href={canonicalUrl} />
+    <link rel="image_src" href={socialImageUrl} />
     <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" as="image" href="/photo.jpg" imagesrcset="/photo.jpg" />
     <meta name="generator" content={Astro.generator} />
 
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={imageUrl} />
-    <meta property="og:image:secure_url" content={imageUrl} />
-    <meta property="og:image:width" content="1254" />
-    <meta property="og:image:height" content="1254" />
-    <meta property="og:image:alt" content="Captain Bug logo for Jonathan Rodriguez Tames" />
-    <meta property="og:site_name" content="Jonathan Rodriguez Tames Portfolio" />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:secure_url" content={socialImageUrl} />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    <meta property="og:site_name" content={siteName} />
     <meta property="og:locale" content="en_CA" />
     <meta property="og:locale:alternate" content="fr_CA" />
+    <meta property="og:updated_time" content={lastUpdated} />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={imageUrl} />
-    <meta name="twitter:image:alt" content="Captain Bug logo for Jonathan Rodriguez Tames" />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

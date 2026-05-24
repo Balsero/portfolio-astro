@@ -1,10 +1,11 @@
 {
   "name": "Jonathan Rodriguez Tames Portfolio",
   "short_name": "Captain Bug",
-  "description": "Software developer portfolio for Jonathan Rodriguez Tames.",
+  "description": "Software developer portfolio for Jonathan Rodriguez Tames in Montreal.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#0a0a0a",
   "theme_color": "#0a0a0a",
   "icons": [

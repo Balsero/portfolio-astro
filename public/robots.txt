@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /audio/
 
 Sitemap: https://portfolio-astro-two-indol.vercel.app/sitemap.xml
