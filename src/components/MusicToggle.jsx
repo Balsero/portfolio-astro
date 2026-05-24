@@ -20,20 +20,27 @@ function pickRandomTrack(previousTrack) {
 export default function MusicToggle() {
   const audioRef = useRef(null);
   const [isMuted, setIsMuted] = useState(false);
+  const [playbackBlocked, setPlaybackBlocked] = useState(false);
   const [currentTrack, setCurrentTrack] = useState(musicTracks[0]);
 
   useEffect(() => {
     setCurrentTrack(pickRandomTrack(null));
   }, []);
 
-  const playCurrentTrack = useCallback(() => {
+  const playCurrentTrack = useCallback(async () => {
     const audio = audioRef.current;
-    if (!audio) return;
+    if (!audio) return false;
 
+    audio.muted = false;
     audio.volume = backgroundVolume;
-    audio.play().catch(() => {
-      /* Browser may require a direct user gesture before audio starts. */
-    });
+    try {
+      await audio.play();
+      setPlaybackBlocked(false);
+      return true;
+    } catch {
+      setPlaybackBlocked(true);
+      return false;
+    }
   }, []);
 
   const rotateTrack = useCallback(() => {
@@ -48,6 +55,9 @@ export default function MusicToggle() {
     audio.volume = backgroundVolume;
     if (!isMuted) {
       playCurrentTrack();
+    } else {
+      setPlaybackBlocked(false);
+      audio.pause();
     }
   }, [isMuted, playCurrentTrack]);
 
@@ -56,6 +66,24 @@ export default function MusicToggle() {
       playCurrentTrack();
     }
   }, [currentTrack, isMuted, playCurrentTrack]);
+
+  useEffect(() => {
+    if (!playbackBlocked || isMuted) return undefined;
+
+    const unlockPlayback = () => {
+      playCurrentTrack();
+    };
+
+    window.addEventListener('pointerdown', unlockPlayback, { capture: true });
+    window.addEventListener('keydown', unlockPlayback, { capture: true });
+    window.addEventListener('touchstart', unlockPlayback, { capture: true });
+
+    return () => {
+      window.removeEventListener('pointerdown', unlockPlayback, { capture: true });
+      window.removeEventListener('keydown', unlockPlayback, { capture: true });
+      window.removeEventListener('touchstart', unlockPlayback, { capture: true });
+    };
+  }, [isMuted, playbackBlocked, playCurrentTrack]);
 
   const handleToggle = () => {
     setIsMuted((muted) => !muted);
@@ -77,7 +105,7 @@ export default function MusicToggle() {
         ref={audioRef}
         src={currentTrack}
         muted={isMuted}
-        preload="none"
+        preload="auto"
         onEnded={rotateTrack}
       />
     </>
