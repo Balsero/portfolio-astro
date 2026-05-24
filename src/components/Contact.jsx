@@ -1,14 +1,13 @@
 import { useLanguage } from '../hooks/useLanguage';
-import { FcInvite, FcAddressBook } from 'react-icons/fc';
 import { SiGithub } from 'react-icons/si';
-import { FaLinkedin } from 'react-icons/fa';
+import { FaEnvelope, FaLinkedin, FaSatelliteDish } from 'react-icons/fa';
 
 export default function Contact() {
   const { t, currentLang } = useLanguage();
 
   const contactItems = [
     {
-      icon: <FcAddressBook size={28} />,
+      icon: <FaEnvelope size={25} color="#c9a050" />,
       label: currentLang === 'en' ? 'Email' : 'Courriel',
       value: 'jonathan.rodrigueztames@gmail.com',
       href: 'mailto:jonathan.rodrigueztames@gmail.com',
@@ -35,7 +34,7 @@ export default function Contact() {
       <div className="container">
         <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {t('contact.sectionTitle')}{' '}
-          <FcInvite size={28} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+          <FaSatelliteDish size={24} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
         </h2>
 
         <div className="contact-content">

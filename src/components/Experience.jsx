@@ -1,7 +1,6 @@
 import { useLanguage } from '../hooks/useLanguage';
-import { FcBriefcase } from 'react-icons/fc';
 import { SiAngular, SiTypescript, SiSass, SiHtml5, SiOpenjdk, SiApachemaven, SiIntellijidea, SiJunit5 } from 'react-icons/si';
-import { FaShieldAlt, FaVial } from 'react-icons/fa';
+import { FaBriefcase, FaShieldAlt, FaVial } from 'react-icons/fa';
 
 function Experience() {
   const { t } = useLanguage();
@@ -29,7 +28,7 @@ function Experience() {
       <div className="container">
         <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {t('experience.sectionTitle')}{' '}
-          <FcBriefcase size={28} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+          <FaBriefcase size={24} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
         </h2>
 
         <div className="timeline">

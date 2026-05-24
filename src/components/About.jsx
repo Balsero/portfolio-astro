@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { FcAbout, FcGlobe, FcMusic, FcFlashOn } from 'react-icons/fc';
-import { FaGamepad } from 'react-icons/fa';
+import { FaBolt, FaGamepad, FaGlobeAmericas, FaMusic, FaUserSecret } from 'react-icons/fa';
 
 function About() {
   const { t } = useLanguage();
@@ -13,15 +12,15 @@ function About() {
   const getIcon = (index) => {
     switch (index) {
       case 0:
-        return <FaGamepad size={26} color="#ffb300" />;
+        return <FaGamepad size={24} color="#c9a050" />;
       case 1:
-        return <FcGlobe size={28} />;
+        return <FaGlobeAmericas size={24} color="#e8d5b5" />;
       case 2:
-        return <FcMusic size={28} />;
+        return <FaMusic size={24} color="#c9a050" />;
       case 3:
-        return <FcFlashOn size={28} />;
+        return <FaBolt size={23} color="#e8d5b5" />;
       default:
-        return <FcAbout size={28} />;
+        return <FaUserSecret size={24} color="#c9a050" />;
     }
   };
 
@@ -30,7 +29,7 @@ function About() {
       <div className="container">
         <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {t('about.sectionTitle')}{' '}
-          <FcAbout size={28} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+          <FaUserSecret size={24} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
         </h2>
 
         <div className="about-grid">

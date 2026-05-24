@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
+import MusicToggle from './MusicToggle';
 
 function Navbar() {
   const { t, currentLang, toggleLang } = useLanguage();
@@ -53,18 +54,7 @@ function Navbar() {
         </ul>
 
         <div className="nav-right">
-          <button
-            className="lang-toggle"
-            onClick={toggleLang}
-            type="button"
-            aria-label={`Switch language to ${nextLangLabel}`}
-          >
-            <span className={`flag-icon flag-${nextLang}`} aria-hidden="true"></span>
-            <span>{nextLangLabel}</span>
-          </button>
-        </div>
-
-        <div className="nav-right-mobile">
+          <MusicToggle />
           <button
             className="lang-toggle"
             onClick={toggleLang}

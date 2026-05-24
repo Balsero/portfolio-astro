@@ -1,9 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import { typewriterPhrases } from '../i18n/translations';
-import { FcMusic, FcFlashOn } from 'react-icons/fc';
-import { SiAngular } from 'react-icons/si';
-import { FaGamepad, FaLaptopCode, FaGraduationCap, FaTv, FaSkull } from 'react-icons/fa';
+import {
+  FaGamepad,
+  FaGraduationCap,
+  FaLaptopCode,
+  FaMusic,
+  FaSkull,
+  FaTv,
+  FaUserSecret,
+} from 'react-icons/fa';
 
 const particleColors = [
   'rgba(201, 160, 80, 0.6)',
@@ -86,11 +92,11 @@ function Hero() {
   const getPhraseIcon = (index) => {
     switch (index % 6) {
       case 0: // Frontend Developer
-        return <FaLaptopCode size={20} color="#61DAFB" style={{ display: 'inline-block', flexShrink: 0 }} />;
+        return <FaLaptopCode size={20} color="#e8d5b5" style={{ display: 'inline-block', flexShrink: 0 }} />;
       case 1: // Game Developer
-        return <FaGamepad size={22} color="#ffb300" style={{ display: 'inline-block', flexShrink: 0 }} />;
+        return <FaGamepad size={22} color="#c9a050" style={{ display: 'inline-block', flexShrink: 0 }} />;
       case 2: // Musician
-        return <FcMusic size={22} style={{ display: 'inline-block', flexShrink: 0 }} />;
+        return <FaMusic size={20} color="#c9a050" style={{ display: 'inline-block', flexShrink: 0 }} />;
       case 3: // Software Engineering Student
         return <FaGraduationCap size={20} color="#c9a050" style={{ display: 'inline-block', flexShrink: 0 }} />;
       case 4: // Anime Lover
@@ -126,7 +132,7 @@ function Hero() {
         <div className="hero-content">
           <div className="hero-text">
             <p className="hero-greeting">
-              {t('hero.greeting')} <FcFlashOn size={18} style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: '4px' }} />
+              {t('hero.greeting')} <FaUserSecret size={17} style={{ display: 'inline-block', verticalAlign: 'middle', marginLeft: '6px' }} />
             </p>
 
             <h1 className="hero-name">
@@ -165,11 +171,11 @@ function Hero() {
                 <span className="badge-text">{t('hero.badges.0') || 'Lab Instructor'}</span>
               </div>
               <div className="floating-badge badge-2">
-                <FaGamepad size={14} color="#ffb300" />
+                <FaGamepad size={14} color="#c9a050" />
                 <span className="badge-text">{t('hero.badges.1') || 'Game Dev'}</span>
               </div>
               <div className="floating-badge badge-3">
-                <FcMusic size={16} />
+                <FaMusic size={14} color="#c9a050" />
                 <span className="badge-text">{t('hero.badges.2') || 'Musician'}</span>
               </div>
             </div>

@@ -1,7 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { FcOpenedFolder, FcFlashOn } from 'react-icons/fc';
-import { FaGamepad } from 'react-icons/fa';
+import { FaBolt, FaFolderOpen, FaGamepad } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import {
   SiAngular,
@@ -130,11 +129,11 @@ export default function Projects() {
           />
         );
       case 2:
-        return <FaGamepad size={32} color="#ffb300" />;
+        return <FaGamepad size={30} color="#c9a050" />;
       case 3:
-        return <FcFlashOn size={32} />;
+        return <FaBolt size={30} color="#c9a050" />;
       default:
-        return <FcOpenedFolder size={32} />;
+        return <FaFolderOpen size={30} color="#c9a050" />;
     }
   };
 
@@ -161,7 +160,7 @@ export default function Projects() {
       <div className="container">
         <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {t('projects.sectionTitle')}{' '}
-          <FcOpenedFolder size={28} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+          <FaFolderOpen size={24} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
         </h2>
 
         {/* Software & Web Applications */}

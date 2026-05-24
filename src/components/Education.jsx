@@ -1,5 +1,5 @@
 import { useLanguage } from '../hooks/useLanguage';
-import { FcGraduationCap, FcReading } from 'react-icons/fc';
+import { FaGraduationCap, FaUserGraduate } from 'react-icons/fa';
 
 function Education() {
   const { t } = useLanguage();
@@ -9,11 +9,11 @@ function Education() {
   const getIcon = (index) => {
     switch (index) {
       case 0:
-        return <FcGraduationCap size={48} />;
+        return <FaGraduationCap size={42} />;
       case 1:
-        return <FcReading size={48} />;
+        return <FaUserGraduate size={40} />;
       default:
-        return <FcGraduationCap size={48} />;
+        return <FaGraduationCap size={42} />;
     }
   };
 
@@ -22,7 +22,7 @@ function Education() {
       <div className="container">
         <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {t('education.sectionTitle')}{' '}
-          <FcGraduationCap size={28} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+          <FaGraduationCap size={24} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
         </h2>
 
         <div className="education-grid">

@@ -1,5 +1,5 @@
 import { useLanguage } from '../hooks/useLanguage';
-import { FcSettings, FcCommandLine, FcGrid, FcDatabase, FcWorkflow, FcSupport } from 'react-icons/fc';
+import { FaCode, FaDatabase, FaLayerGroup, FaNetworkWired, FaTerminal, FaTools } from 'react-icons/fa';
 import {
   SiOpenjdk,
   SiSharp,
@@ -45,17 +45,17 @@ export default function Skills() {
   const getCategoryIcon = (index) => {
     switch (index) {
       case 0:
-        return <FcCommandLine size={22} />;
+        return <FaTerminal size={19} />;
       case 1:
-        return <FcGrid size={22} />;
+        return <FaLayerGroup size={19} />;
       case 2:
-        return <FcDatabase size={22} />;
+        return <FaDatabase size={19} />;
       case 3:
-        return <FcWorkflow size={22} />;
+        return <FaNetworkWired size={19} />;
       case 4:
-        return <FcSupport size={22} />;
+        return <FaTools size={19} />;
       default:
-        return <FcCommandLine size={22} />;
+        return <FaTerminal size={19} />;
     }
   };
 
@@ -115,7 +115,7 @@ export default function Skills() {
       <div className="container">
         <h2 className="section-title" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
           {t('skills.sectionTitle')}{' '}
-          <FcSettings size={28} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
+          <FaCode size={24} style={{ display: 'inline-block', verticalAlign: 'middle' }} />
         </h2>
 
         <div className="skills-categories">
