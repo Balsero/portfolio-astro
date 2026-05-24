@@ -1,16 +1,141 @@
 ---
 import App from '../App.jsx';
 import '../styles/global.css';
+
+const siteUrl = 'https://portfolio-astro-two-indol.vercel.app';
+const canonicalUrl = `${siteUrl}/`;
+const title = 'Jonathan Rodriguez Tames | Software Developer Portfolio';
+const description =
+  'Portfolio of Jonathan Rodriguez Tames, a software engineering student and developer in Montreal focused on web apps, game development, software testing, and music tools.';
+const imageUrl = `${siteUrl}/assets/captain-bug-logo.png`;
+const keywords = [
+  'Jonathan Rodriguez Tames',
+  'software developer portfolio',
+  'software engineering student',
+  'frontend developer',
+  'game developer',
+  'Angular developer',
+  'React developer',
+  'Astro portfolio',
+  'Montreal software developer',
+  'ÉTS software engineering',
+  'Repertory Planner',
+  'Anime Best Quotes',
+].join(', ');
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${canonicalUrl}#person`,
+      name: 'Jonathan Rodriguez Tames',
+      url: canonicalUrl,
+      image: imageUrl,
+      jobTitle: 'Software Developer',
+      email: 'mailto:jonathan.rodrigueztames@gmail.com',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Montreal',
+        addressRegion: 'QC',
+        addressCountry: 'CA',
+      },
+      alumniOf: [
+        {
+          '@type': 'CollegeOrUniversity',
+          name: 'École de technologie supérieure',
+          alternateName: 'ÉTS',
+        },
+        {
+          '@type': 'CollegeOrUniversity',
+          name: 'Collège de Rosemont',
+        },
+      ],
+      knowsAbout: [
+        'Software Engineering',
+        'Frontend Development',
+        'Angular',
+        'React',
+        'Astro',
+        'Game Development',
+        'Unity',
+        'Software Testing',
+      ],
+      sameAs: [
+        'https://github.com/Balsero',
+        'https://www.linkedin.com/in/jonasrodriguezt',
+      ],
+    },
+    {
+      '@type': 'WebSite',
+      '@id': `${canonicalUrl}#website`,
+      url: canonicalUrl,
+      name: 'Jonathan Rodriguez Tames Portfolio',
+      description,
+      inLanguage: ['en', 'fr'],
+      publisher: {
+        '@id': `${canonicalUrl}#person`,
+      },
+    },
+    {
+      '@type': 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: title,
+      description,
+      isPartOf: {
+        '@id': `${canonicalUrl}#website`,
+      },
+      about: {
+        '@id': `${canonicalUrl}#person`,
+      },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: imageUrl,
+        width: 1254,
+        height: 1254,
+      },
+      inLanguage: ['en', 'fr'],
+    },
+  ],
+};
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content="Portfolio of Jonathan Rodriguez Tames – Software developer passionate about web, gaming and music." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Jonathan Rodriguez Tames" />
+    <meta name="keywords" content={keywords} />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="color-scheme" content="dark" />
+    <meta http-equiv="content-language" content="en, fr" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="generator" content={Astro.generator} />
-    
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:secure_url" content={imageUrl} />
+    <meta property="og:image:width" content="1254" />
+    <meta property="og:image:height" content="1254" />
+    <meta property="og:image:alt" content="Captain Bug logo for Jonathan Rodriguez Tames" />
+    <meta property="og:site_name" content="Jonathan Rodriguez Tames Portfolio" />
+    <meta property="og:locale" content="en_CA" />
+    <meta property="og:locale:alternate" content="fr_CA" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content="Captain Bug logo for Jonathan Rodriguez Tames" />
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,8 +143,9 @@ import '../styles/global.css';
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    
-    <title>Jonathan Rodriguez Tames | Portfolio</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
+    <title>{title}</title>
   </head>
   <body>
     <App client:load />

@@ -1,5 +1,5 @@
 import { useLanguage } from '../hooks/useLanguage';
-import { FcInvite, FcAddressBook, FcCellPhone } from 'react-icons/fc';
+import { FcInvite, FcAddressBook } from 'react-icons/fc';
 import { SiGithub } from 'react-icons/si';
 import { FaLinkedin } from 'react-icons/fa';
 

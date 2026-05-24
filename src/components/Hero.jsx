@@ -135,9 +135,9 @@ function Hero() {
               <span className="name-line">Tames</span>
             </h1>
 
-            <div className="hero-typewriter" style={{ display: 'flex', alignItems: 'center', gap: '8px', minHeight: '36px' }}>
+            <div className="hero-typewriter">
               {getPhraseIcon(phraseIndex)}
-              <div style={{ display: 'inline-flex', alignItems: 'center' }}>
+              <div className="typewriter-copy">
                 <span>{displayText}</span>
                 <span className="cursor"></span>
               </div>

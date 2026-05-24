@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import { FcOpenedFolder, FcMusic, FcIdea, FcFlashOn } from 'react-icons/fc';
+import { FcOpenedFolder, FcFlashOn } from 'react-icons/fc';
 import { FaGamepad } from 'react-icons/fa';
 import { FiExternalLink } from 'react-icons/fi';
 import {
@@ -114,9 +114,21 @@ export default function Projects() {
   const getProjectIcon = (index) => {
     switch (index) {
       case 0:
-        return <FcMusic size={32} />;
+        return (
+          <img
+            src="/assets/rep-planner-logo.svg"
+            alt="Repertory Planner"
+            className="project-logo-icon"
+          />
+        );
       case 1:
-        return <FcIdea size={32} />;
+        return (
+          <img
+            src="/assets/anime-best-quotes-white.png"
+            alt="Anime Best Quotes"
+            className="project-logo-icon project-logo-icon-anime"
+          />
+        );
       case 2:
         return <FaGamepad size={32} color="#ffb300" />;
       case 3:
@@ -164,7 +176,7 @@ export default function Projects() {
                   key={project.originalIndex}
                   project={project}
                   index={project.originalIndex}
-                  isFeatured={project.originalIndex === 0} // highlight Repertory Planner
+                  isFeatured={false}
                   getProjectIcon={getProjectIcon}
                   getTechIcon={getTechIcon}
                 />

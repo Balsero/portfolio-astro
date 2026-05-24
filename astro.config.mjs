@@ -5,5 +5,6 @@ import react from '@astrojs/react';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://portfolio-astro-two-indol.vercel.app',
   integrations: [react()]
 });

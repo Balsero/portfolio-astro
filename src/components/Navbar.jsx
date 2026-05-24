@@ -39,9 +39,7 @@ function Navbar() {
     <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
       <div className="container">
         <a href="#" className="nav-logo" onClick={(e) => handleNavClick(e, '#hero')}>
-          <span className="bracket">&lt;</span>
-          <span>JRT</span>
-          <span className="bracket">/&gt;</span>
+          <img src="/assets/captain-bug-logo.png" alt="Captain Bug" />
         </a>
 
         <ul className={`nav-links${menuOpen ? ' open' : ''}`}>
